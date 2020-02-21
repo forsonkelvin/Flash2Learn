@@ -4,27 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root_view"
     tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/question_holder"
         android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/color_shape"
+        android:elevation="5dp"
         android:gravity="center"
-        android:layout_height="195dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:text=" Capital City of Ghana?"
-        android:textSize="40sp" />
+        android:text=" Capital city of Ghana?"
+        android:textSize="36sp" />
 
     <TextView
         android:id="@+id/answer_holder"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="101dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="183dp"
+        android:background="@drawable/answer_shape"
         android:gravity="center"
         android:text="Accra"
         android:textSize="30sp"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/Option_1"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        android:background="@drawable/options_shape"
+        android:gravity="center"
+        android:text="Sunyani"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/Option_2"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="175dp"
+        android:layout_weight="1"
+        android:background="@drawable/options_shape"
+        android:gravity="center"
+        android:text="Accra"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/Option_3"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp"
+        android:layout_weight="1"
+        android:background="@drawable/options_shape"
+        android:gravity="center"
+        android:text="Kumasi"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/toggle_icon_visibility"
+        android:layout_width="46dp"
+        android:layout_height="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:gravity="center"
+        android:src="@drawable/ic_iconmonstr_eye_8" />
+
 </RelativeLayout>
