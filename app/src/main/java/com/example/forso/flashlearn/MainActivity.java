@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.Option_1).setBackgroundResource(R.drawable.options_shape);
                     findViewById(R.id.Option_2).setBackgroundResource(R.drawable.options_shape);
                     findViewById(R.id.Option_3).setBackgroundResource(R.drawable.options_shape);
+
                 }
             });
 
