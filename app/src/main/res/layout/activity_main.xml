@@ -81,4 +81,14 @@
         android:gravity="center"
         android:src="@drawable/ic_iconmonstr_eye_8" />
 
+    <ImageView
+        android:id="@+id/plus_button"
+        android:layout_width="77dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="27dp"
+        android:src="@drawable/ic_iconmonstr_plus_circle_thin" />
+
 </RelativeLayout>
