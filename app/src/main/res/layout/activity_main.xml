@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/question_holder"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
@@ -25,9 +25,8 @@
         android:id="@+id/answer_holder"
         android:layout_width="match_parent"
         android:layout_height="101dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="183dp"
+        android:layout_centerVertical="true"
         android:background="@drawable/answer_shape"
         android:gravity="center"
         android:text="Accra"
@@ -38,7 +37,9 @@
         android:id="@+id/Option_1"
         android:layout_width="300dp"
         android:layout_height="65dp"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="233dp"
         android:layout_weight="1"
         android:background="@drawable/options_shape"
         android:gravity="center"
@@ -51,7 +52,7 @@
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="175dp"
+        android:layout_marginBottom="179dp"
         android:layout_weight="1"
         android:background="@drawable/options_shape"
         android:gravity="center"
@@ -64,7 +65,7 @@
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp"
+        android:layout_marginBottom="95dp"
         android:layout_weight="1"
         android:background="@drawable/options_shape"
         android:gravity="center"
@@ -73,22 +74,30 @@
 
     <ImageView
         android:id="@+id/toggle_icon_visibility"
-        android:layout_width="46dp"
-        android:layout_height="41dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:layout_alignTop="@+id/plus_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp"
         android:gravity="center"
         android:src="@drawable/ic_iconmonstr_eye_8" />
 
     <ImageView
         android:id="@+id/plus_button"
-        android:layout_width="77dp"
-        android:layout_height="70dp"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="13dp"
-        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_iconmonstr_plus_circle_thin" />
+
+    <ImageView
+        android:id="@+id/edit_button"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/plus_button"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_iconmonstr_pencil_14" />
 
 </RelativeLayout>

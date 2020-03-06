@@ -122,6 +122,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                    startActivityForResult(intent, 100);
+                }
+            });
+
 
 
 
@@ -129,10 +137,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100) { // this 100 needs to match the 100 we used when we called startActivityForResult!
-            String string1 = data.getExtras().getString("string1"); // 'string1' needs to match the key we used when we put the string in the Intent
-            String string2 = data.getExtras().getString("string2");
-            ((TextView) findViewById(R.id.question_holder)).setText(string1);
-            ((TextView) findViewById(R.id.answer_holder)).setText(string2);
+            if (data != null) {// checks for empty data passed by the user to prevent app from crashing.
+                String string1 = data.getExtras().getString("string1"); // 'string1' needs to match the key we used when we put the string in the Intent
+                String string2 = data.getExtras().getString("string2");
+                ((TextView) findViewById(R.id.question_holder)).setText(string1);
+                ((TextView) findViewById(R.id.answer_holder)).setText(string2);
+            }
 
         }
 
