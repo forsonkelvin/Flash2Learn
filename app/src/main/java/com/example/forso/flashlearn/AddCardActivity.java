@@ -19,24 +19,17 @@ public class AddCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AddCardActivity.this, MainActivity.class);
                 finish();
-
-
             }
         });
 
         // Saves the data by the user and returns to Main activity with the new data being passed to main screen.
-
-        Intent intent = new Intent(AddCardActivity.this, MainActivity.class);
-        startActivityForResult(intent,100);
         findViewById(R.id.save_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent data = new Intent();//
+                data.putExtra("string1", ((EditText) findViewById(R.id.question)).getText().toString()); //
+                data.putExtra("string2", ((EditText) findViewById(R.id.answer)).getText().toString());
 
-                ((EditText) findViewById(R.id.question)).getText().toString();
-                ((EditText) findViewById(R.id.answer)).getText().toString();
-                Intent data = new Intent();
-                data.putExtra("string1", "question");
-                data.putExtra("string2", "answer");
                 setResult(RESULT_OK, data);
                 finish();
 
