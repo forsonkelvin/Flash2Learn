@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".AddCardActivity">
 
+    <EditText
+        android:id="@+id/user_option_2"
+        android:layout_width="290dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="146dp"
+        android:gravity="center"
+        android:hint="Enter Another Option Here"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/user_option_1"
+        android:layout_width="290dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:hint="Enter Option Here"
+        android:inputType="textMultiLine" />
+
     <ImageView
         android:id="@+id/return_button"
         android:layout_width="80dp"
@@ -31,7 +51,7 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="178dp"
+        android:layout_marginTop="142dp"
         android:gravity="center"
         android:hint="Enter Answer Here"
         android:inputType="textMultiLine" />
@@ -42,7 +62,7 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="51dp"
         android:gravity="center"
         android:hint="Enter Question Here"
         android:inputType="textMultiLine" />

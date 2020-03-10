@@ -1,6 +1,7 @@
 package com.example.forso.flashlearn;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -126,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                    intent.putExtra("question1",((TextView)findViewById(R.id.question_holder)).getText().toString());
+                    intent.putExtra("answer1", ((TextView)findViewById(R.id.answer_holder)).getText().toString());
                     startActivityForResult(intent, 100);
                 }
             });
@@ -140,8 +143,13 @@ public class MainActivity extends AppCompatActivity {
             if (data != null) {// checks for empty data passed by the user to prevent app from crashing.
                 String string1 = data.getExtras().getString("string1"); // 'string1' needs to match the key we used when we put the string in the Intent
                 String string2 = data.getExtras().getString("string2");
+                String string3 = data.getExtras().getString("string3");
+                String string4 = data.getExtras().getString("string4");
                 ((TextView) findViewById(R.id.question_holder)).setText(string1);
                 ((TextView) findViewById(R.id.answer_holder)).setText(string2);
+                ((TextView) findViewById(R.id.Option_1)).setText(string3);
+                ((TextView) findViewById(R.id.Option_2)).setText(string2);
+                ((TextView) findViewById(R.id.Option_3)).setText(string4);
             }
 
         }
