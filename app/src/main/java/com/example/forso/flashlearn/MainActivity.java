@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        flashcardDatabase = new FlashcardDatabase(getApplicationContext());
+        allFlashcards = flashcardDatabase.getAllCards();
+
+        if (allFlashcards != null && allFlashcards.size() > 0) {
+            ((TextView) findViewById(R.id.question_holder)).setText(allFlashcards.get(0).getQuestion());
+            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(0).getAnswer());
+            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(0).getWrongAnswer1());
+            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(0).getWrongAnswer2());
+        }
 
         // Changes the Background color of the question field
         //((TextView) findViewById(R.id.question_holder)).setBackgroundColor(getResources().getColor(R.color.colorSeaBlue));
@@ -133,6 +144,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+        findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // advance our pointer index so we can show the next card
+                currentCardDisplayedIndex++;
+
+                // make sure we don't get an IndexOutOfBoundsError if we are viewing the last indexed card in our list
+                if (currentCardDisplayedIndex > allFlashcards.size() - 1) {
+                    currentCardDisplayedIndex = 0;
+                }
+
+                // set the question and answer TextViews with data from the database
+                ((TextView) findViewById(R.id.question_holder)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                ((TextView) findViewById(R.id.Option_1)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
+                ((TextView) findViewById(R.id.Option_2)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                ((TextView) findViewById(R.id.Option_3)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+            }
+        });
+
+
+
 
 
 
@@ -150,11 +183,21 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.Option_1)).setText(string3);
                 ((TextView) findViewById(R.id.Option_2)).setText(string2);
                 ((TextView) findViewById(R.id.Option_3)).setText(string4);
+                flashcardDatabase.insertCard(new Flashcard(string1, string2));
+                flashcardDatabase.insertCard(new Flashcard(string3, string4));
+                allFlashcards = flashcardDatabase.getAllCards();
+
+
             }
 
         }
 
     }
+
+    int currentCardDisplayedIndex = 0;
+    FlashcardDatabase flashcardDatabase;
+    List<Flashcard> allFlashcards;
+
 
 }
 

@@ -14,7 +14,7 @@
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="26dp"
         android:background="@drawable/color_shape"
         android:elevation="5dp"
         android:gravity="center"
@@ -35,11 +35,11 @@
 
     <TextView
         android:id="@+id/Option_1"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="226dp"
+        android:layout_marginTop="217dp"
         android:layout_weight="1"
         android:background="@drawable/options_shape"
         android:gravity="center"
@@ -48,11 +48,11 @@
 
     <TextView
         android:id="@+id/Option_2"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="197dp"
+        android:layout_marginBottom="203dp"
         android:layout_weight="1"
         android:background="@drawable/options_shape"
         android:gravity="center"
@@ -61,11 +61,11 @@
 
     <TextView
         android:id="@+id/Option_3"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="107dp"
+        android:layout_marginBottom="106dp"
         android:layout_weight="1"
         android:background="@drawable/options_shape"
         android:gravity="center"
@@ -99,5 +99,14 @@
         android:layout_alignTop="@+id/plus_button"
         android:layout_marginStart="16dp"
         android:src="@drawable/ic_iconmonstr_pencil_14" />
+
+    <ImageView
+        android:id="@+id/next_button"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="214dp"
+        android:src="@drawable/ic_iconmonstr_arrow_25" />
 
 </RelativeLayout>
