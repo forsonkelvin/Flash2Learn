@@ -21,12 +21,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         flashcardDatabase = new FlashcardDatabase(getApplicationContext());
         allFlashcards = flashcardDatabase.getAllCards();
+        allFlashcards = flashcardDatabase.getAllCards();
+
+
 
         if (allFlashcards != null && allFlashcards.size() > 0) {
-            ((TextView) findViewById(R.id.question_holder)).setText(allFlashcards.get(0).getQuestion());
-            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(0).getAnswer());
-            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(0).getWrongAnswer1());
-            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(0).getWrongAnswer2());
+            ((TextView) findViewById(R.id.question_holder)).setText(allFlashcards.get(allFlashcards.size() -1).getQuestion());
+            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(allFlashcards.size() -1).getAnswer());
+            ((TextView) findViewById(R.id.Option_2)).setText(allFlashcards.get(allFlashcards.size() -1).getAnswer());
+            ((TextView) findViewById(R.id.Option_1)).setText(allFlashcards.get(allFlashcards.size() -1).getWrongAnswer1());
+            ((TextView) findViewById(R.id.Option_3)).setText(allFlashcards.get(allFlashcards.size() -1).getWrongAnswer2());
         }
 
         // Changes the Background color of the question field
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.Option_3).setVisibility(View.GONE);
                 findViewById(R.id.toggle_icon_visibility).setVisibility(View.GONE);
                 findViewById(R.id.answer_holder).setVisibility(View.VISIBLE);
-
+                findViewById(R.id.next_button).setVisibility(View.INVISIBLE);
 
             }
         });
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.Option_2).setVisibility(View.VISIBLE);
                 findViewById(R.id.Option_3).setVisibility(View.VISIBLE);
                 findViewById(R.id.toggle_icon_visibility).setVisibility(View.VISIBLE);
+                findViewById(R.id.next_button).setVisibility(View.VISIBLE);
 
             }
         });
@@ -159,12 +164,22 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.question_holder)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
                 ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
                 ((TextView) findViewById(R.id.Option_1)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
-                ((TextView) findViewById(R.id.Option_2)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
                 ((TextView) findViewById(R.id.Option_3)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+                ((TextView) findViewById(R.id.Option_2)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
             }
         });
 
+       findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.question_holder)).getText().toString());
+               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer_holder)).getText().toString());
+               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.Option_1)).getText().toString());
+               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.Option_2)).getText().toString());
+               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.Option_3)).getText().toString());
 
+           }
+       });
 
 
 
@@ -183,8 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.Option_1)).setText(string3);
                 ((TextView) findViewById(R.id.Option_2)).setText(string2);
                 ((TextView) findViewById(R.id.Option_3)).setText(string4);
-                flashcardDatabase.insertCard(new Flashcard(string1, string2));
-                flashcardDatabase.insertCard(new Flashcard(string3, string4));
+                flashcardDatabase.insertCard(new Flashcard(string1, string2, string3, string4));
                 allFlashcards = flashcardDatabase.getAllCards();
 
 
