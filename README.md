@@ -5,10 +5,10 @@ Create, Store flashcards for learning.
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://imgur.com/6bKxYyv.gif width=200><br>
 
 ## Required
-x [ ] User can create a card and still see their created card when the app is relaunched.
+x [ ] User can create a card and still see their created card when the app is relaunched.<br>
 x [ ] User can create muliple cards and browse through all created cards
 
 ## Optional
