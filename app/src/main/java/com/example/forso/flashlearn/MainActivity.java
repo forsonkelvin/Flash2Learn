@@ -1,10 +1,14 @@
 package com.example.forso.flashlearn;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +51,27 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.toggle_icon_visibility).setVisibility(View.GONE);
                 findViewById(R.id.answer_holder).setVisibility(View.VISIBLE);
                 findViewById(R.id.next_button).setVisibility(View.INVISIBLE);
+
+                // animation for revealing answer when question is clicked.
+                View questionSideView = findViewById(R.id.question_holder);
+                View answerSideView = findViewById(R.id.answer_holder);
+
+                // Obtains the center of the clipping circle for animation.
+                int cx = answerSideView.getWidth() / 2;
+                int cy = answerSideView.getWidth() / 2;
+
+                // Obtains the radius of the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+                // Creates animator for question view with start Radius of Zero*
+                Animator anim = ViewAnimationUtils.createCircularReveal(answerSideView,cx,cy,0f, finalRadius);
+
+                // Hide question and shows answer
+                questionSideView.setVisibility(View.INVISIBLE);
+                answerSideView.setVisibility(View.VISIBLE);
+
+                anim.setDuration(1000);
+                anim.start();
 
             }
         });
@@ -136,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                     startActivityForResult(intent,100);
+                    overridePendingTransition(R.anim.right_in, R.anim.left_in);
                 }
             });
 
@@ -166,25 +192,42 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.Option_1)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
                 ((TextView) findViewById(R.id.Option_3)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
                 ((TextView) findViewById(R.id.Option_2)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+
+                // Sliding Animation for moving through multiple cards in a deck.\
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(),R.anim.left_in);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(),R.anim.right_in);
+
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                findViewById(R.id.question_holder).startAnimation(leftOutAnim);
+                findViewById(R.id.Option_1).startAnimation(leftOutAnim);
+                findViewById(R.id.Option_2).startAnimation(leftOutAnim);
+                findViewById(R.id.Option_3).startAnimation(leftOutAnim);
+                findViewById(R.id.question_holder).startAnimation(rightInAnim);
+                findViewById(R.id.Option_1).startAnimation(rightInAnim);
+                findViewById(R.id.Option_2).startAnimation(rightInAnim);
+                findViewById(R.id.Option_3).startAnimation(rightInAnim);
+
             }
         });
 
-       findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.question_holder)).getText().toString());
-               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer_holder)).getText().toString());
-               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.Option_1)).getText().toString());
-               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.Option_2)).getText().toString());
-               flashcardDatabase.deleteCard(((TextView) findViewById(R.id.Option_3)).getText().toString());
-
-           }
-       });
 
 
-
-
-        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100) { // this 100 needs to match the 100 we used when we called startActivityForResult!
