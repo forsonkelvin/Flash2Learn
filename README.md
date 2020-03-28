@@ -9,9 +9,9 @@ Flash2Learn is a flashcard app that can be used to create and store questions an
 <img src="https://imgur.com/u1ZaET6.gif" width=200><br>
 
 ## Required
-x- [ ] User sees a transition animation when going from the main screen to the add card screen.
-x- [ ] User sees a reveal animation when the flashcard is tapped and the answer is shown
-x- [ ] User sees flashcards animating in / out when the 'next' button is tapped
+x- [ ] User sees a transition animation when going from the main screen to the add card screen.<br>
+x- [ ] User sees a reveal animation when the flashcard is tapped and the answer is shown.<br>
+x- [ ] User sees flashcards animating in / out when the 'next' button is tapped.<br>
 
 ## Optional
 - [ ] Extra styling is added!
