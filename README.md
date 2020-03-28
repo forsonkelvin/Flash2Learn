@@ -1,14 +1,14 @@
 ## Lab 3
 
 ### App Description
-Create, Store flashcards for learning.
+Flash2Learn is a flashcard app that can be used to create and store questions and answer sets for studies.
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://imgur.com/6bKxYyv.gif" width=200><br>
 
 ## Required
-x [ ] User can create a card and still see their created card when the app is relaunched.
+x [ ] User can create a card and still see their created card when the app is relaunched.<br>
 x [ ] User can create muliple cards and browse through all created cards
 
 ## Optional
