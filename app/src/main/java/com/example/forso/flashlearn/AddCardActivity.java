@@ -45,7 +45,13 @@ public class AddCardActivity extends AppCompatActivity {
 
         String s1 = getIntent().getStringExtra("question1");
         String s2 = getIntent().getStringExtra("answer1");
+        String s3 = getIntent().getStringExtra("option1");
+        String s4 = getIntent().getStringExtra("option3");
+
         ((EditText) findViewById(R.id.question)).setText(s1);
         ((EditText) findViewById(R.id.answer)).setText(s2);
+        ((EditText) findViewById(R.id.user_option_1)).setText(s3);
+        ((EditText) findViewById(R.id.user_option_2)).setText(s4);
+
     }
 }

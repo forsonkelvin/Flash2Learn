@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         flashcardDatabase = new FlashcardDatabase(getApplicationContext());
-        allFlashcards = flashcardDatabase.getAllCards();
         allFlashcards = flashcardDatabase.getAllCards();
 
 
@@ -161,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                     startActivityForResult(intent,100);
+                    Intent myIntent = new Intent(MainActivity.this, AddCardActivity.class);
+                    startActivityForResult(myIntent, 200);
                     overridePendingTransition(R.anim.right_in, R.anim.left_in);
                 }
             });
@@ -171,7 +174,36 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                     intent.putExtra("question1",((TextView)findViewById(R.id.question_holder)).getText().toString());
                     intent.putExtra("answer1", ((TextView)findViewById(R.id.answer_holder)).getText().toString());
+                    intent.putExtra("option1", ((TextView) findViewById(R.id.Option_1)).getText().toString());
+                    intent.putExtra("option3", ((TextView) findViewById(R.id.Option_3)).getText().toString());
+
                     startActivityForResult(intent, 100);
+                }
+            });
+
+            findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
+                boolean is_deleting = false;
+                @Override
+                public void onClick(View v) {
+                    if (!is_deleting) {
+                        flashcardDatabase.deleteCard(((TextView) findViewById(R.id.question_holder)).getText().toString());
+                        allFlashcards = flashcardDatabase.getAllCards();
+                        if (!allFlashcards.isEmpty()){
+                            currentCardDisplayedIndex = getRandomNumber(0, allFlashcards.size() - 1);
+                            ((TextView) findViewById(R.id.question_holder)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                            ((TextView) findViewById(R.id.answer_holder)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                            ((TextView) findViewById(R.id.Option_1)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
+                            ((TextView) findViewById(R.id.Option_2)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                            ((TextView) findViewById(R.id.Option_3)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+                        } else{
+                            ((TextView) findViewById(R.id.question_holder)).setText("Add a new question");
+                            ((TextView) findViewById(R.id.answer_holder)).setText("Add a new answer");
+                            ((TextView) findViewById(R.id.Option_1)).setText("Add a new choice 1");
+                            ((TextView) findViewById(R.id.Option_2)).setText("Add a new choice 2");
+                            ((TextView) findViewById(R.id.Option_3)).setText("Add a new choice 3");
+                        }
+                    }
+
                 }
             });
 
@@ -179,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // advance our pointer index so we can show the next card
-                currentCardDisplayedIndex++;
+                currentCardDisplayedIndex = getRandomNumber(0,allFlashcards.size()- 1);
 
                 // make sure we don't get an IndexOutOfBoundsError if we are viewing the last indexed card in our list
                 if (currentCardDisplayedIndex > allFlashcards.size() - 1) {
@@ -254,6 +286,12 @@ public class MainActivity extends AppCompatActivity {
     int currentCardDisplayedIndex = 0;
     FlashcardDatabase flashcardDatabase;
     List<Flashcard> allFlashcards;
+    Flashcard cardToEdit;
+
+    public int getRandomNumber(int minNumber, int maxNumber) {
+        Random rand = new Random();
+        return rand.nextInt((maxNumber - minNumber) + 1) + minNumber;
+    }
 
 
 }
